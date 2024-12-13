@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyTask</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+            transition: background 0.5s ease-in-out;
+        }
+
+        /* Barra de status */
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #1c92d2, #f2fcfe, #43cea2, #185a9d);
+            background-size: 600% 600%;
+            animation: vibrantGradient 10s ease infinite;
+            transition: background 0.5s ease-in-out, height 0.3s ease;
+            z-index: 1000;
+        }
+
+        .content {
+            text-align: center;
+            max-width: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            margin-top: 40px; /* Espaço para a barra de status */
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .header img {
+            height: 80px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #1c92d2, #f2fcfe, #43cea2, #185a9d);
+            background-size: 600% 600%;
+            animation: vibrantGradient 10s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #1c92d2, #f2fcfe, #43cea2, #185a9d);
+            background-size: 600% 600%;
+            animation: vibrantGradient 10s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Botões */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 45px;
+            padding-bottom: 45px;
+            width: 100%;
+            scroll-behavior: smooth;
+        }
+
+        .button-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 250px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.5s ease-in-out;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .button-item h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            color: #000000;
+            position: relative;
+            z-index: 1;
+        }
+
+        .button-item p {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .button-item a {
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #1c92d2, #f2fcfe, #43cea2, #185a9d);
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-item.active a {
+            background: linear-gradient(90deg, #000000, #000000);
+        }
+
+        .button-item a:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes vibrantGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header img {
+                height: 60px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .button-item h2 {
+                font-size: 1.3rem;
+            }
+
+            .button-item p {
+                font-size: 0.9rem;
+            }
+
+            .button-item a {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de status -->
+    <div class="status-bar" role="status" aria-live="polite"></div>
+
+    <div class="content">
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/StudyTask-ai/StudyTask-Mobile/refs/heads/main/Logo%20Do%20StudyTask.png" alt="Ícone StudyTask">
+            <h1>StudyTask</h1>
+            <p>Deslize para explorar as matérias!</p>
+        </div>
+
+        <div class="button-container" role="group" aria-label="Botões de matérias">
+            <div class="button-item math" data-gradient="linear-gradient(135deg, #ff7eb3, #ff758c)" aria-label="Matemática">
+                <h2>Matemática</h2>
+                <p>Desenvolva habilidades para resolver problemas do cotidiano.</p>
+                <a href="https://www.example.com/matematica" target="_blank">Acessar</a>
+            </div>
+            <div class="button-item portuguese" data-gradient="linear-gradient(135deg, #1c92d2, #f2fcfe)" aria-label="Português">
+                <h2>Português</h2>
+                <p>Aprenda a ler e escrever com clareza.</p>
+                <a href="https://www.example.com/portugues" target="_blank">Acessar</a>
+            </div>
+            <div class="button-item science" data-gradient="linear-gradient(135deg, #43cea2, #185a9d)" aria-label="Ciências da Natureza">
+                <h2>Ciências da Natureza</h2>
+                <p>Explore o mundo natural e suas maravilhas.</p>
+                <a href="https://www.example.com/ciencias" target="_blank">Acessar</a>
+            </div>
+            <div class="button-item history" data-gradient="linear-gradient(135deg, #ffbb33, #ffdd55)" aria-label="História">
+                <h2>História</h2>
+                <p>Entenda eventos que moldaram o nosso mundo.</p>
+                <a href="https://www.example.com/historia" target="_blank">Acessar</a>
+            </div>
+            <div class="button-item geography" data-gradient="linear-gradient(135deg, #33ccff, #66ffff)" aria-label="Geografia">
+                <h2>Geografia</h2>
+                <p>Descubra a diversidade do nosso planeta.</p>
+                <a href="https://www.example.com/geografia" target="_blank">Acessar</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const statusBar = document.querySelector('.status-bar');
+        const buttonItems = document.querySelectorAll('.button-item');
+        const buttonContainer = document.querySelector('.button-container');
+
+        // Função para atualizar o gradiente
+        const updateGradient = () => {
+            const scrollLeft = buttonContainer.scrollLeft;
+            const buttonWidth = buttonItems[0].offsetWidth + 45; // Largura do botão + gap
+            const activeIndex = Math.round(scrollLeft / buttonWidth);
+
+            buttonItems.forEach((button, index) => {
+                button.classList.remove('active');
+                if (index === activeIndex) {
+                    button.classList.add('active');
+                }
+            });
+
+            const activeButton = buttonItems[activeIndex];
+            const gradient = activeButton.getAttribute('data-gradient');
+
+            // Atualizar barra de status
+            statusBar.style.background = gradient;
+
+            // Atualizar cor do botão ativo
+            buttonItems.forEach((button, index) => {
+                button.style.background = index === activeIndex ? gradient : '#ffffff';
+            });
+        };
+
+        // Evento de scroll para mudar gradiente
+        buttonContainer.addEventListener('scroll', updateGradient);
+    </script>
+</body>
+</html>
