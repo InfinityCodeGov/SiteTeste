@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyTask</title>
+    <title>StudyTask Offline</title>
     <style>
         @keyframes gradientAnimation {
             0% { background-position: 0% 50%; }
@@ -16,9 +16,9 @@
             font-family: Arial, sans-serif;
             background-color: #000000;
             background-image: url('fundop.jpg');
-            background-size: cover; /* A imagem de fundo irá cobrir toda a tela */
-            background-position: center center; /* Centraliza a imagem */
-            background-attachment: fixed; /* A imagem de fundo ficará fixa ao rolar */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
             color: white;
             display: flex;
             flex-direction: column;
@@ -60,11 +60,11 @@
         }
 
         .button {
-            padding: 50px; /* Aumentando o tamanho dos botões */
-            font-size: 30px; /* Aumentando o tamanho da fonte */
+            padding: 50px;
+            font-size: 30px;
             font-weight: bold;
             border: none;
-            border-radius: 20px; /* Bordas arredondadas */
+            border-radius: 20px;
             background: linear-gradient(45deg, #ff7e5f, #feb47b, #86a8e7, #7f7fd5);
             background-size: 300% 300%;
             animation: gradientAnimation 5s ease infinite;
@@ -72,8 +72,8 @@
             cursor: pointer;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 250px; /* Aumentando a largura */
-            height: 250px; /* Tornando os botões quadrados e grandes */
+            width: 250px;
+            height: 250px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -81,15 +81,15 @@
         }
 
         .button:hover {
-            transform: scale(1.1); /* Efeito de aumento no hover */
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7); /* Sombra mais forte no hover */
+            transform: scale(1.1);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
         }
 
         @media (max-width: 1024px) {
             .button {
                 width: 220px;
                 height: 220px;
-                font-size: 26px; /* Ajustando para telas médias */
+                font-size: 26px;
             }
         }
 
@@ -97,7 +97,7 @@
             .button {
                 width: 180px;
                 height: 180px;
-                font-size: 24px; /* Ajustando para telas menores */
+                font-size: 24px;
             }
         }
 
@@ -105,10 +105,19 @@
             .button {
                 width: 150px;
                 height: 150px;
-                font-size: 20px; /* Ajustando para telas muito pequenas */
+                font-size: 20px;
             }
         }
     </style>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                console.log('Service Worker registrado com sucesso:', registration.scope);
+            }).catch(function(error) {
+                console.error('Falha ao registrar o Service Worker:', error);
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="header">
@@ -117,12 +126,12 @@
     </div>
 
     <div class="button-container">
-        <button class="button">Português</button>
-        <button class="button">Matemática</button>
-        <button class="button">História</button>
-        <button class="button">Geografia</button>
-        <button class="button">Ciências</button>
-        <button class="button">Inglês</button>
+        <button class="button" onclick="location.href='https://example.com/portugues'">Português</button>
+        <button class="button" onclick="location.href='https://example.com/matematica'">Matemática</button>
+        <button class="button" onclick="location.href='https://example.com/historia'">História</button>
+        <button class="button" onclick="location.href='https://example.com/geografia'">Geografia</button>
+        <button class="button" onclick="location.href='https://example.com/ciencias'">Ciências</button>
+        <button class="button" onclick="location.href='https://example.com/ingles'">Inglês</button>
     </div>
 </body>
 </html>
